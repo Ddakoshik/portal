@@ -1,0 +1,29 @@
+<div class="main_catalog">
+  <div class="main_catalog_header">
+    <p class="main_catalog_title">Новые объявления</p>
+    <mat-button-toggle-group #cart="matButtonToggleGroup">
+      <mat-button-toggle value="block">
+        <mat-icon>view_module</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="block-row">
+        <mat-icon>view_list</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="row">
+        <mat-icon>view_headline</mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <div class="example-selected-value">Selected value: {{cart.value}}</div>
+  </div>
+    <div class=""></div>
+    <mat-card  *ngFor="let card of cards" class="simpl_card">
+  
+      <img mat-card-image [src]="card.hrefimg" alt="Описание гитары"> 
+      <mat-card-content>
+        <div class="simpl_card_row">
+          <mat-card-title>{{card.group}} {{card.title}}</mat-card-title>
+          <mat-card-title>{{card.price}}р</mat-card-title>
+        </div>
+        <!-- <mat-card-subtitle>{{card.about}}</mat-card-subtitle> -->
+      </mat-card-content>
+    </mat-card>
+</div>

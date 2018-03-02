@@ -1,0 +1,25 @@
+
+<div class="header_box">
+  <mat-form-field>
+    <mat-select placeholder="Выберите категорию">
+      <mat-option *ngFor="let categori of categories" [value]="categori.value">
+        {{ categori.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <mat-form-field class="search">
+    <input matInput placeholder="Поиск по обявлениям" >
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Выберите город">
+      <mat-option *ngFor="let citi of cities" [value]="citi.value">
+        {{ citi.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button color="primary">Найти</button>
+</div>
+
+

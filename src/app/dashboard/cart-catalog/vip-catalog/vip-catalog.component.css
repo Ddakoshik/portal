@@ -1,0 +1,4 @@
+.vip_catalog{width: 70%;  border: 1px solid #000; display: flex; flex-direction: row; justify-content: space-around; flex-wrap: wrap;}
+.vip_catalog_title{width: 100%; margin-left: 20px;}
+.vip_card{width: 40%; margin: 15px 0;}
+.vip_card_row{display: flex; justify-content: space-between; box-sizing: border-box;}

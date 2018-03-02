@@ -1,0 +1,16 @@
+<div class="vip_catalog">
+  <p class="vip_catalog_title">
+    VIP обявления
+  </p>
+  <mat-card *ngFor="let card of cards" class="vip_card">
+
+    <img mat-card-image [src]="card.hrefimg" alt="Описание гитары">
+    <mat-card-content>
+      <div class="vip_card_row">
+        <mat-card-title>{{card.group}} {{card.title}}</mat-card-title>
+        <mat-card-title>{{card.price}}р</mat-card-title>
+      </div>
+      <mat-card-subtitle>{{card.about}}</mat-card-subtitle>
+    </mat-card-content>
+  </mat-card>
+</div>
