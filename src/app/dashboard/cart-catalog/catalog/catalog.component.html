@@ -1,6 +1,6 @@
-<div class="main_catalog">
-  <div class="main_catalog_header">
-    <p class="main_catalog_title">Новые объявления</p>
+<div class="main-catalog">
+  <div class="main-catalog__header">
+    <p class="main-catalog__title">Новые объявления</p>
     <mat-button-toggle-group #cart="matButtonToggleGroup">
       <mat-button-toggle value="block">
         <mat-icon>view_module</mat-icon>
@@ -12,39 +12,41 @@
         <mat-icon>view_headline</mat-icon>
       </mat-button-toggle>
     </mat-button-toggle-group>
-    <div class="example-selected-value">Selected value: {{cart.value}}</div>
+    <!-- <div class="example-selected-value">Selected value: {{cart.value}}</div> -->
   </div>
-  <div *ngFor="let card of cards" class="main_catalog_cart_box">
-    <mat-card *ngIf = " cart.value === 'block'  "  class="simpl_card">
+
+
+  
+  <div *ngIf = " cart.value === 'block'" class="main-catalog__cart-box">
+    <mat-card  *ngFor="let card of cards"  class="simpl-card_box">
       <img mat-card-image [src]="card.hrefimg" alt="Описание гитары"> 
       <mat-card-content>
-        <div class="simpl_card_row">
+        <div class="simpl-card__box-row">
           <mat-card-title>{{card.group}} {{card.title}}</mat-card-title>
           <mat-card-title>{{card.price}}р</mat-card-title>
         </div>
-        <!-- <mat-card-subtitle>{{card.about}}</mat-card-subtitle> -->
-      </mat-card-content>
-    </mat-card>
-    <mat-card *ngIf = " cart.value === 'block-row' "  class="simpl_card">
-      <!-- <img mat-card-image [src]="card.hrefimg" alt="Описание гитары">  -->
-      <mat-card-content>
-        <div class="simpl_card_row">
-          <mat-card-title>{{card.group}} {{card.title}}</mat-card-title>
-          <mat-card-title>{{card.price}}р</mat-card-title>
-        </div>
-        <!-- <mat-card-subtitle>{{card.about}}</mat-card-subtitle> -->
-      </mat-card-content>
-    </mat-card>
-    <mat-card *ngIf = " cart.value === row "  class="simpl_card">
-      <img mat-card-image [src]="card.hrefimg" alt="Описание гитары"> 
-      <mat-card-content>
-        <div class="simpl_card_row">
-          <mat-card-title>{{card.group}} {{card.title}}</mat-card-title>
-          <mat-card-title>{{card.price}}р</mat-card-title>
-        </div>
-        <!-- <mat-card-subtitle>{{card.about}}</mat-card-subtitle> -->
       </mat-card-content>
     </mat-card>
   </div>
-    
+  <div *ngIf = " cart.value === 'block-row'" class="main-catalog__cart-box">
+    <mat-card *ngFor="let card of cards"  class="simpl-card_box-row">
+      <img mat-card-image [src]="card.hrefimg" alt="Описание гитары"> 
+      <mat-card-content>
+        <div class="simpl-card__box-row-row">
+          <mat-card-title>{{card.group}} {{card.title}}</mat-card-title>
+          <mat-card-title>{{card.price}}р</mat-card-title>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div *ngIf = " cart.value === 'row'" class="main-catalog__cart-box">
+    <mat-card *ngFor="let card of cards"  class="simpl-card_row">
+      <mat-card-content>
+        <div class="simpl-card__row-row">
+          <mat-card-title>{{card.group}} {{card.title}}</mat-card-title>
+          <mat-card-title>{{card.price}}р</mat-card-title>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div> 
 </div>
