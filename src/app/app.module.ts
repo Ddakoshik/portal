@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AppRoutingModule } from './/app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './dashboard/header/header.component';
@@ -11,9 +14,9 @@ import { VipCatalogComponent } from './dashboard/cart-catalog/vip-catalog/vip-ca
 import { CatalogComponent } from './dashboard/cart-catalog/catalog/catalog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CartCatalogComponent } from './dashboard/cart-catalog/cart-catalog.component';
-import { AppRoutingModule } from './/app-routing.module';
 import { LoginComponent } from './authorization/login/login.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
+import { RegistrationComponent } from './authorization/registration/registration.component';
 
 
 @NgModule({
@@ -27,13 +30,15 @@ import { AuthorizationComponent } from './authorization/authorization.component'
     DashboardComponent,
     CartCatalogComponent,
     LoginComponent,
-    AuthorizationComponent
+    AuthorizationComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
     MaterialModule,
     BrowserAnimationsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
