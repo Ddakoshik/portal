@@ -4,7 +4,7 @@ import { MaterialModule } from './shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { HeaderMainComponent } from './dashboard/header/header-main/header-main.component';
+import { HeaderComponent } from './dashboard/header/header.component';
 import { HeaderLoginComponent } from './dashboard/header/header-login/header-login.component';
 import { HeaderSearchComponent } from './dashboard/header/header-search/header-search.component';
 import { LoginComponent } from './authorization/login/login.component';
@@ -12,14 +12,16 @@ import { RegistrationComponent } from './authorization/registration/registration
 import { ResetPasswordComponent } from './authorization/reset-password/reset-password.component';
 import { VipCatalogComponent } from './dashboard/cart-catalog/vip-catalog/vip-catalog.component';
 import { CatalogComponent } from './dashboard/cart-catalog/catalog/catalog.component';
-import { CatalogMainComponent } from './dashboard/cart-catalog/catalog-main/catalog-main.component';
 import { AuthorizationMainComponent } from './authorization/authorization-main/authorization-main.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CartCatalogComponent } from './dashboard/cart-catalog/cart-catalog.component';
+import { HomeComponent } from './authorization/home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderMainComponent,
+    HeaderComponent,
     HeaderLoginComponent,
     HeaderSearchComponent, 
     LoginComponent,
@@ -27,8 +29,10 @@ import { AuthorizationMainComponent } from './authorization/authorization-main/a
     ResetPasswordComponent,
     VipCatalogComponent,
     CatalogComponent,
-    CatalogMainComponent,
-    AuthorizationMainComponent
+    AuthorizationMainComponent,
+    DashboardComponent,
+    CartCatalogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
