@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
-
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,18 +8,49 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  myFirstReactiveForm: FormGroup;
 
+  constructor(private fb: FormBuilder) {}
 
-
-  constructor() {
-
-   }
 
   ngOnInit() {
+    this.initForm();
   }
 
+   /** Инициализация формы*/
+ initForm() {
+  this.myFirstReactiveForm = this.fb.group({
+    email: ['', [
+      Validators.required, Validators.email
+     ]
+    ],
+    password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]]
+   });
+ }
+
+ isControlInvalid(controlName: string): boolean {
+  const control = this.myFirstReactiveForm.controls[controlName];
+  const result = control.invalid && control.touched;
+
+  return result;
+  }
+
+  onSubmit() {
+    const controls = this.myFirstReactiveForm.controls;
+
+     /** Проверяем форму на валидность */
+     if (this.myFirstReactiveForm.invalid) {
+      /** Если форма не валидна, то помечаем все контролы как touched*/
+      Object.keys(controls)
+       .forEach(controlName => controls[controlName].markAsTouched());
+
+       /** Прерываем выполнение метода*/
+       return;
+      }
+
+     /** TODO: Обработка данных формы */
+     console.log(this.myFirstReactiveForm.value);
+    }
+
 }
+
