@@ -4,7 +4,11 @@ import { MaterialModule } from './shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 import { AppRoutingModule } from './/app-routing.module';
+// import { AuthModule } from './auth/auth.module';
+// import { NotFoundModule } from './not-found/not-found.module';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './dashboard/header/header.component';
@@ -14,9 +18,8 @@ import { VipCatalogComponent } from './dashboard/cart-catalog/vip-catalog/vip-ca
 import { CatalogComponent } from './dashboard/cart-catalog/catalog/catalog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CartCatalogComponent } from './dashboard/cart-catalog/cart-catalog.component';
-import { LoginComponent } from './authorization/login/login.component';
-import { AuthorizationComponent } from './authorization/authorization.component';
-import { RegistrationComponent } from './authorization/registration/registration.component';
+import { AuthRoutingModule } from './auth/auth-routing.module';
+
 
 
 @NgModule({
@@ -24,14 +27,12 @@ import { RegistrationComponent } from './authorization/registration/registration
     AppComponent,
     HeaderComponent,
     HeaderLoginComponent,
-    HeaderSearchComponent, 
+    HeaderSearchComponent,
     VipCatalogComponent,
     CatalogComponent,
     DashboardComponent,
     CartCatalogComponent,
-    LoginComponent,
-    AuthorizationComponent,
-    RegistrationComponent
+
   ],
   imports: [
     BrowserModule,
@@ -39,6 +40,9 @@ import { RegistrationComponent } from './authorization/registration/registration
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    // AuthModule,
+    // NotFoundModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
