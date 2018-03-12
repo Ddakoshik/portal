@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ export class LoginComponent implements OnInit {
 
   myFirstReactiveForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,
+              private Auth: AuthService) {}
 
 
   ngOnInit() {
@@ -37,6 +39,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     const controls = this.myFirstReactiveForm.controls;
+
+    const username = this.myFirstReactiveForm.value.email;
+    const password = this.myFirstReactiveForm.value.password;
+    this.Auth.getUserDitails(username, password)
 
      /** Проверяем форму на валидность */
      if (this.myFirstReactiveForm.invalid) {
