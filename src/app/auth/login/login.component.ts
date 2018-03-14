@@ -10,9 +10,13 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
 
   myFirstReactiveForm: FormGroup;
+  
+  email: string;
+  password: string;
 
   constructor(private fb: FormBuilder,
-              private Auth: AuthService) {}
+              private authService: AuthService
+            ) {}
 
 
   ngOnInit() {
@@ -20,43 +24,55 @@ export class LoginComponent implements OnInit {
   }
 
    /** Инициализация формы*/
- initForm() {
-  this.myFirstReactiveForm = this.fb.group({
-    email: ['', [
-      Validators.required, Validators.email
-     ]
-    ],
-    password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]]
-   });
- }
+  initForm() {
+    this.myFirstReactiveForm = this.fb.group({
+      email: ['', [
+        Validators.required, Validators.email
+      ]
+      ],
+      password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]]
+    });
+  }
 
- isControlInvalid(controlName: string): boolean {
-  const control = this.myFirstReactiveForm.controls[controlName];
-  const result = control.invalid && control.touched;
+  isControlInvalid(controlName: string): boolean {
+    const control = this.myFirstReactiveForm.controls[controlName];
+    const result = control.invalid && control.touched;
 
-  return result;
+    return result;
   }
 
   onSubmit() {
     const controls = this.myFirstReactiveForm.controls;
-
     const username = this.myFirstReactiveForm.value.email;
     const password = this.myFirstReactiveForm.value.password;
-    this.Auth.getUserDitails(username, password)
+    // this.Auth.getUserDitails(username, password)
 
-     /** Проверяем форму на валидность */
-     if (this.myFirstReactiveForm.invalid) {
+      /** Проверяем форму на валидность */
+      if (this.myFirstReactiveForm.invalid) {
       /** Если форма не валидна, то помечаем все контролы как touched*/
       Object.keys(controls)
-       .forEach(controlName => controls[controlName].markAsTouched());
+        .forEach(controlName => controls[controlName].markAsTouched());
 
-       /** Прерываем выполнение метода*/
-       return;
+        /** Прерываем выполнение метода*/
+        return;
       }
 
-     /** TODO: Обработка данных формы */
-     console.log(this.myFirstReactiveForm.value);
-    }
+      /** TODO: Обработка данных формы */
+      console.log(this.myFirstReactiveForm.value);
+  }
+
+  signup() {
+    this.authService.signup(this.email, this.password);
+    this.email = this.password = '';
+  }
+
+  login() {
+    this.authService.login(this.email, this.password);
+    this.email = this.password = '';    
+  }
+
+  logout() {
+    this.authService.logout();
+  }
 
 }
-

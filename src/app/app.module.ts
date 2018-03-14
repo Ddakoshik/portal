@@ -6,8 +6,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './/app-routing.module';
-// import { AuthModule } from './auth/auth.module';
-// import { NotFoundModule } from './not-found/not-found.module';
+
+import { AuthRoutingModule } from './auth/auth-routing.module';
+import { environment } from './../environments/environment';
+
+//fierbase
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 import { AppComponent } from './app.component';
@@ -18,7 +24,7 @@ import { VipCatalogComponent } from './dashboard/cart-catalog/vip-catalog/vip-ca
 import { CatalogComponent } from './dashboard/cart-catalog/catalog/catalog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CartCatalogComponent } from './dashboard/cart-catalog/cart-catalog.component';
-import { AuthRoutingModule } from './auth/auth-routing.module';
+
 
 
 
@@ -40,9 +46,9 @@ import { AuthRoutingModule } from './auth/auth-routing.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    // AuthModule,
-    // NotFoundModule,
-
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

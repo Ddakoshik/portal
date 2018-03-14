@@ -10,66 +10,36 @@
             <input matInput placeholder="Пароль"  id="password" formControlName="password">
         </mat-form-field>
 
-       
-
-
-        <!-- <label for="name">имя</label>
-        <input type="text" id="name" formControlName="name" />
-        <div class="error" *ngIf="isControlInvalid('name')">
-            Имя должно состоять только из русских букв
-        </div>
-        <br/><br/> -->
-        
-        <!-- <label for="email">email</label>
-        <input type="text" id="email" formControlName="email" />
-        <br/><br/>
-
-        <div class="form-group">
-            <label for="password">Пароль пользователя:</label>
-            <input type="text" id="password" formControlName="password" />
-        </div>
-        <br/><br/> -->
-
         <div class="form-group">
             <button mat-raised-button color="primary" type="submit">Войти</button>
+            <button mat-raised-button color="primary" type="submit">Войти через Google</button>
             <a mat-raised-button routerLink="/auth/registration" >Регистрация</a>
         </div>
         
-
-
-
-
-
-    <!-- <mat-form-field class="example-full-width">
-        <input matInput placeholder="Имя" value="Андрей">
-    </mat-form-field>
-    
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Email" [formControl]="emailFormControl">
-        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-        Пожалуйста введите валидный email
-        </mat-error>
-        <mat-error *ngIf="emailFormControl.hasError('required')">
-        Email is <strong>required</strong>
-        </mat-error>
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-        <input matInput placeholder="Пароль" >
-    </mat-form-field>
-    <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary">Login</button>
-        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        <a [routerLink]="['/authorization/registration']" class="btn btn-link">Register</a>
-    </div> -->
     </form>
 </mat-card>
 
-
-
-    
-
- 
 <div>
-    {{myFirstReactiveForm.value | json}}
+    {{myFirstReactiveForm.value.email | json}}
 </div>
-<!-- <h1>login</h1> -->
+
+
+<h1 *ngIf="authService.user | async">Welcome {{ (authService.user | async)?.email }}!</h1>
+
+<div *ngIf="!(authService.user | async)">
+  <input type="text" [(ngModel)]="email" placeholder="email">
+  <input type="password" [(ngModel)]="password" placeholder="password">
+
+  <button (click)="signup()" [disabled]="!email || !password">
+    Signup
+  </button>
+
+  <button (click)="login()" [disabled]="!email || !password">
+    Login
+  </button>
+</div>
+
+<button (click)="logout()" *ngIf="authService.user | async">
+  Logout
+</button>
+
