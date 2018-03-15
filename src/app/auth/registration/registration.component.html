@@ -1,16 +1,4 @@
-<p>
-  registration works!
-</p>
-<div *ngIf="afAuth.authState | async as user; else showLogin">
-  <h1>Hello {{ user.displayName }}!</h1>
-  <button (click)="logout()">Logout</button>
-</div>
-<ng-template #showLogin>
-  <p>Please login.</p>
-  <button (click)="login()">Login with Google</button>
-</ng-template>
-
-  <ul>
+  <!-- <ul>
     <li *ngFor="let item of items | async">
       <input type="text" #updatetext [value]="item.text" />
       <button (click)="updateItem(item.key, updatetext.value)">Update</button>
@@ -19,4 +7,38 @@
   </ul>
   <input type="text" #newitem />
   <button (click)="addItem(newitem.value)">Add</button>
-  <button (click)="deleteEverything()">Delete All</button>
+  <button (click)="deleteEverything()">Delete All</button> -->
+
+
+
+  <mat-card>
+    <h2>Login</h2>
+    <form class="login-form" [formGroup]="registrationForm" (submit)="onSubmit()"  >
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Логин(email)" id="email" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Пароль" type="password"  id="password1" formControlName="password1">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Пароль" type="password"  id="password2" formControlName="password2">
+      </mat-form-field>
+
+        <div class="form-group">
+          <button mat-raised-button routerLink="/auth/login"  >Войти</button>
+          <button mat-raised-button color="primary" type="submit">Регистрация</button>
+        </div>
+        
+    </form>
+    <div *ngIf="afAuth.authState | async as user; else showLogin">
+        <h1>Hello {{ user.displayName }}!</h1>
+        <button (click)="logout()">Logout</button>
+    </div>
+</mat-card>
+
+<div>
+  {{registrationForm.value | json}}
+</div>

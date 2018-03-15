@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
+import { AngularFireAuth  } from 'angularfire2/auth';
+import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +21,8 @@ export class LoginComponent implements OnInit {
   password: string;
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService
+              private authService: AuthService,
+              public afAuth: AngularFireAuth,
             ) {}
 
 
@@ -43,7 +50,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     const controls = this.myFirstReactiveForm.controls;
-    const username = this.myFirstReactiveForm.value.email;
+    const email = this.myFirstReactiveForm.value.email;
     const password = this.myFirstReactiveForm.value.password;
     // this.Auth.getUserDitails(username, password)
 
@@ -59,20 +66,28 @@ export class LoginComponent implements OnInit {
 
       /** TODO: Обработка данных формы */
       console.log(this.myFirstReactiveForm.value);
+      this.login(email, password)
   }
+  
 
-  signup() {
-    this.authService.signup(this.email, this.password);
-    this.email = this.password = '';
-  }
-
-  login() {
-    this.authService.login(this.email, this.password);
-    this.email = this.password = '';    
+  login(email, password) {
+     this.authService.login(email, password);
+    email = password = '';  
+    console.log(email, password,+'all ok');
   }
 
   logout() {
     this.authService.logout();
   }
 
+  //google login
+
+  logingoogle() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+  logoutgoogle() {
+    this.afAuth.auth.signOut();
+  }
+
+ 
 }
