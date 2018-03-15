@@ -9,6 +9,7 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -27,10 +28,9 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    public afAuth: AngularFireAuth, 
+    public afAuth: AngularFireAuth,
     db: AngularFireDatabase,
-    private authService: AuthService) 
-    {
+    private authService: AuthService) {
     this.itemsRef = db.list('messages');
     // Use snapshotChanges().map() to store the key
     this.items = this.itemsRef.snapshotChanges().map(changes => {
@@ -39,7 +39,6 @@ export class RegistrationComponent implements OnInit {
   }
 
 
-  
 
   addItem(newName: string) {
     this.itemsRef.push({ text: newName });
@@ -47,13 +46,20 @@ export class RegistrationComponent implements OnInit {
   updateItem(key: string, newText: string) {
     this.itemsRef.update(key, { text: newText });
   }
-  deleteItem(key: string) {    
-    this.itemsRef.remove(key); 
+  deleteItem(key: string) {
+    this.itemsRef.remove(key);
   }
   deleteEverything() {
     this.itemsRef.remove();
   }
 
+
+  isPasswordMach(): boolean {
+    const control1 = this.registrationForm.controls['password1'];
+    const control2 = this.registrationForm.controls['password2'];
+    
+    return control1 === control2;
+  }
 
   initForm() {
     this.registrationForm = this.fb.group({
@@ -69,6 +75,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initForm();
   }
 
 }

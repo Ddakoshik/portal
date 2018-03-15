@@ -1,6 +1,6 @@
 <mat-card>
     <h2>Login</h2>
-    <form class="login-form" [formGroup]="myFirstReactiveForm" (submit)="onSubmit()"  >
+    <form class="login-form" [formGroup]="loginForm" (submit)="onSubmit()">
 
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Логин(email)" id="email" formControlName="email">
@@ -25,7 +25,7 @@
 </mat-card>
 
 <div>
-    {{myFirstReactiveForm.value | json}}
+    {{loginForm.value | json}}
 </div>
 
 

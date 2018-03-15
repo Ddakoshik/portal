@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
@@ -8,6 +9,7 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,12 +17,13 @@ import 'rxjs/add/operator/map';
 })
 export class LoginComponent implements OnInit {
 
-  myFirstReactiveForm: FormGroup;
-  
+  loginForm: FormGroup;
   email: string;
   password: string;
 
-  constructor(private fb: FormBuilder,
+  constructor(
+              private fb: FormBuilder,
+              private router: Router,
               private authService: AuthService,
               public afAuth: AngularFireAuth,
             ) {}
@@ -28,11 +31,19 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
+    // this.afAuth.authState.subscribe(
+    //   i => {
+    //     if (i !== null) {
+    //       this.router.navigate(['']);
+    //     }
+    //     return i;
+    //   }
+    // );
   }
 
    /** Инициализация формы*/
   initForm() {
-    this.myFirstReactiveForm = this.fb.group({
+    this.loginForm = this.fb.group({
       email: ['', [
         Validators.required, Validators.email
       ]
@@ -42,20 +53,20 @@ export class LoginComponent implements OnInit {
   }
 
   isControlInvalid(controlName: string): boolean {
-    const control = this.myFirstReactiveForm.controls[controlName];
+    const control = this.loginForm.controls[controlName];
     const result = control.invalid && control.touched;
 
     return result;
   }
 
   onSubmit() {
-    const controls = this.myFirstReactiveForm.controls;
-    const email = this.myFirstReactiveForm.value.email;
-    const password = this.myFirstReactiveForm.value.password;
+    const controls = this.loginForm.controls;
+    const email = this.loginForm.value.email;
+    const password = this.loginForm.value.password;
     // this.Auth.getUserDitails(username, password)
 
       /** Проверяем форму на валидность */
-      if (this.myFirstReactiveForm.invalid) {
+      if (this.loginForm.invalid) {
       /** Если форма не валидна, то помечаем все контролы как touched*/
       Object.keys(controls)
         .forEach(controlName => controls[controlName].markAsTouched());
@@ -65,22 +76,21 @@ export class LoginComponent implements OnInit {
       }
 
       /** TODO: Обработка данных формы */
-      console.log(this.myFirstReactiveForm.value);
-      this.login(email, password)
+      console.log(this.loginForm.value);
+      this.login(email, password);
   }
-  
 
   login(email, password) {
      this.authService.login(email, password);
-    email = password = '';  
-    console.log(email, password,+'all ok');
+    email = password = '';
+    console.log(email, password, 'all ok');
   }
 
   logout() {
     this.authService.logout();
   }
 
-  //google login
+  // google login
 
   logingoogle() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
@@ -89,5 +99,5 @@ export class LoginComponent implements OnInit {
     this.afAuth.auth.signOut();
   }
 
- 
+
 }
