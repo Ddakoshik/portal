@@ -16,6 +16,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
+import { AuthService } from './auth/auth.service';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './dashboard/header/header.component';
 import { HeaderLoginComponent } from './dashboard/header/header-login/header-login.component';
@@ -50,7 +52,7 @@ import { CartCatalogComponent } from './dashboard/cart-catalog/cart-catalog.comp
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,12 +9,12 @@ import { Observable } from 'rxjs/Observable';
 export class AuthService {
   user: Observable<firebase.User>;
 
-  constructor(private firebaseAuth: AngularFireAuth) {
-    this.user = firebaseAuth.authState;
+  constructor(public afAuth: AngularFireAuth) {
+    this.user = afAuth.authState;
   }
 
   signup(email: string, password: string) {
-    this.firebaseAuth
+    this.afAuth
       .auth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    this.firebaseAuth
+    this.afAuth
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
@@ -36,11 +36,13 @@ export class AuthService {
         console.log('Something went wrong:', err.message);
       });
   }
+  logingoogle() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
 
   logout() {
-    this.firebaseAuth
-      .auth
-      .signOut();
+    this.afAuth.auth.signOut();
   }
+  
 
 }

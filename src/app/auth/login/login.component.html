@@ -1,5 +1,5 @@
 <mat-card>
-    <h2>Login</h2>
+    <h2>Логин</h2>
     <form class="login-form" [formGroup]="loginForm" (submit)="onSubmit()">
 
         <mat-form-field class="example-full-width">
@@ -18,15 +18,13 @@
         </div>
         
     </form>
-    <div *ngIf="afAuth.authState | async as user; else showLogin">
+    <!-- <div *ngIf="afAuth.authState | async as user; else showLogin">
         <h1>Hello {{ user.displayName }}!</h1>
         <button (click)="logout()">Logout</button>
-    </div>
+    </div> -->
 </mat-card>
 
-<div>
-    {{loginForm.value | json}}
-</div>
+
 
 
 <!-- <h1 *ngIf="authService.user | async">Welcome {{ (authService.user | async)?.email }}!</h1>

@@ -4,4 +4,7 @@
 .header_reg::before{content: '/'; position: absolute; top: 50%; left: -10px; transform: translateY(-50%);  }
 /* .header_box_right{display: flex; flex-direction: row; align-items: flex-end;} */
 .header_box_right a:hover{color: rgb(24, 125, 207);}
-
+.header_box_right{display: flex; flex-direction: row}
+.batton-row button{margin: 0 10px;}
+.batton-row p {margin-right: 10px;}
+.batton-row{display: flex; flex-direction: row}

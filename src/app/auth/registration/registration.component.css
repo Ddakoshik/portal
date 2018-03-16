@@ -11,3 +11,5 @@
   input.ng-touched.ng-invalid{
     border-color: red;
    }
+
+   mat-card{height: 100%;}

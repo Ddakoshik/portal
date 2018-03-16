@@ -4,8 +4,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { AuthService } from '../auth.service';
 
 import { AngularFireAuth  } from 'angularfire2/auth';
-import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
-import * as firebase from 'firebase/app';
+// import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
+// import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -28,17 +28,22 @@ export class LoginComponent implements OnInit {
               public afAuth: AngularFireAuth,
             ) {}
 
-
   ngOnInit() {
     this.initForm();
-    // this.afAuth.authState.subscribe(
-    //   i => {
-    //     if (i !== null) {
-    //       this.router.navigate(['']);
-    //     }
-    //     return i;
-    //   }
-    // );
+    this.isAuthorizateRoute()
+  }
+
+  // Роут если пользователь авторизировался
+
+  isAuthorizateRoute() {
+    this.afAuth.authState.subscribe(
+      i => {
+        if (i !== null) {
+          this.router.navigate(['']);
+        }
+        return i;
+      }
+    );
   }
 
    /** Инициализация формы*/
@@ -50,13 +55,6 @@ export class LoginComponent implements OnInit {
       ],
       password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]]
     });
-  }
-
-  isControlInvalid(controlName: string): boolean {
-    const control = this.loginForm.controls[controlName];
-    const result = control.invalid && control.touched;
-
-    return result;
   }
 
   onSubmit() {
@@ -83,21 +81,13 @@ export class LoginComponent implements OnInit {
   login(email, password) {
      this.authService.login(email, password);
     email = password = '';
-    console.log(email, password, 'all ok');
+  }
+
+  logingoogle() {
+    this.authService.logingoogle();
   }
 
   logout() {
     this.authService.logout();
   }
-
-  // google login
-
-  logingoogle() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-  }
-  logoutgoogle() {
-    this.afAuth.auth.signOut();
-  }
-
-
 }

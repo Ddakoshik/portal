@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../auth/auth.service';
 
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import { AngularFireAuth } from 'angularfire2/auth';
+
+
 // import { Router, ActivatedRoute } from '@angular/router';
 // import { AngularFireAuth } from 'angularfire2/auth';
 
@@ -12,17 +17,26 @@ import { AuthService } from '../../../auth/auth.service';
 export class HeaderLoginComponent implements OnInit {
 
   constructor(
-    // private authService: AuthService, public afAuth: AngularFireAuth
+    private authService: AuthService,
+    public afAuth: AngularFireAuth
   ) { }
 
   ngOnInit() {
+    this.isAuthorizateRoute()
+  }
 
-    // this.afAuth.authState.subscribe(
-    //   i => {
-    //     if (i !== null) {
-    //       console.log('all ok');
-    //      }
-    //   }
-    // );
+  isAuthorizateRoute() {
+    this.afAuth.authState.subscribe(
+      i => {
+        if (i !== null) {
+          console.log(i);
+         }
+      }
+    );
+  }
+
+
+  logout() {
+    this.authService.logout();
   }
 }

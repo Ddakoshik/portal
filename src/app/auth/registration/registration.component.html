@@ -1,18 +1,5 @@
-  <!-- <ul>
-    <li *ngFor="let item of items | async">
-      <input type="text" #updatetext [value]="item.text" />
-      <button (click)="updateItem(item.key, updatetext.value)">Update</button>
-      <button (click)="deleteItem(item.key)">Delete</button>
-    </li>
-  </ul>
-  <input type="text" #newitem />
-  <button (click)="addItem(newitem.value)">Add</button>
-  <button (click)="deleteEverything()">Delete All</button> -->
-
-
-
   <mat-card>
-    <h2>Registration</h2>
+    <h2>Регистрация</h2>
     <form class="login-form" [formGroup]="registrationForm" (submit)="onSubmit()"  >
 
         <mat-form-field class="example-full-width">
@@ -20,12 +7,19 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Пароль" type="password"  id="password1" formControlName="password1">
+            <input matInput placeholder="Пароль" type="password"  id="password" formControlName="password">
         </mat-form-field>
+        <div class='form-text error' *ngIf="registrationForm.controls.password.touched">
+          <div *ngIf="registrationForm.controls.password.hasError('required')">Введите пароль.</div>
+          <div *ngIf="registrationForm.controls.password.hasError('minlength')">Длина пароля от 3 до 12 символов.</div>
+        </div>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Пароль" type="password"  id="password2" formControlName="password2">
+          <input matInput placeholder="Повторите пароль" type="password"  id="confirmPassword" formControlName="confirmPassword">
       </mat-form-field>
+      <div class='form-text error' *ngIf="registrationForm.controls.confirmPassword.touched">
+        <div *ngIf="registrationForm.hasError('mismatchedPasswords')">Пароли не совпадают.</div>
+      </div>
 
         <div class="form-group">
           <button mat-raised-button routerLink="/auth/login"  >Войти</button>
@@ -33,12 +27,13 @@
         </div>
         
     </form>
-    <div *ngIf="afAuth.authState | async as user; else showLogin">
+
+    
+    <!-- <div *ngIf="afAuth.authState | async as user; else showLogin">
         <h1>Hello {{ user.displayName }}!</h1>
         <button (click)="logout()">Logout</button>
-    </div>
+    </div> -->
 </mat-card>
 
-<div>
-  {{registrationForm.value | json}}
-</div>
+
+
