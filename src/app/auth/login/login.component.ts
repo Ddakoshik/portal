@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    this.isAuthorizateRoute()
+    this.isAuthorizateRoute();
   }
 
   // Роут если пользователь авторизировался

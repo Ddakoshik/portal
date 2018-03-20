@@ -1,7 +1,7 @@
 <div class="header_box">
   <mat-icon>home</mat-icon>
   <div class="header_box_right" >
-    <div *ngIf="!afAuth.authState | async as user; " class="batton-row">
+    <div *ngIf="afAuth.authState !=null" class="batton-row">
         <a routerLink="/auth/login" class="header_login">Войти</a>
         <a routerLink="/auth/registration" class="header_reg">Регистрацыя</a>
     </div>

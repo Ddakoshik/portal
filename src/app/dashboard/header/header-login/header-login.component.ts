@@ -16,13 +16,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class HeaderLoginComponent implements OnInit {
 
+
   constructor(
     private authService: AuthService,
     public afAuth: AngularFireAuth
   ) { }
 
   ngOnInit() {
-    this.isAuthorizateRoute()
+    this.isAuthorizateRoute();
   }
 
   isAuthorizateRoute() {
@@ -30,6 +31,7 @@ export class HeaderLoginComponent implements OnInit {
       i => {
         if (i !== null) {
           console.log(i);
+
          }
       }
     );

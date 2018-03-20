@@ -31,10 +31,9 @@ export class RegistrationComponent implements OnInit {
     private afAuth: AngularFireAuth,
     private router: Router,
     private authService: AuthService) {
-   
   }
 
- 
+
 
   initForm() {
     this.registrationForm = this.fb.group({
@@ -49,7 +48,7 @@ export class RegistrationComponent implements OnInit {
     return (group: FormGroup): {[key: string]: any} => {
       let password = group.controls[passwordKey];
       let confirmPassword = group.controls[confirmPasswordKey];
-      
+
       if (password.value !== confirmPassword.value) {
         return {
           mismatchedPasswords: true
@@ -74,7 +73,7 @@ export class RegistrationComponent implements OnInit {
     const password = this.registrationForm.value.password;
     // this.Auth.getUserDitails(username, password)
 
-      //  Проверяем форму на валидность 
+      //  Проверяем форму на валидность
       if (this.registrationForm.invalid) {
      // Если форма не валидна, то помечаем все контролы как touched
       Object.keys(controls)
@@ -84,7 +83,7 @@ export class RegistrationComponent implements OnInit {
         return;
       }
 
-      // TODO: Обработка данных формы 
+      // TODO: Обработка данных формы
       console.log(this.registrationForm.value);
       this.signup(email, password);
   }
@@ -101,7 +100,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    this.isAuthorizateRoute()
+    this.isAuthorizateRoute();
   }
 
 }
