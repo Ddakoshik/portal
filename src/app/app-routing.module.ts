@@ -8,6 +8,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule'},
   { path: 'not-found', loadChildren: './not-found/not-found.module#NotFoundModule' },
+  { path: 'user-page', loadChildren: './user/user-page.module#UserPageModule' },
 
   { path: '', component: DashboardComponent },
   // otherwise redirect to not-found
