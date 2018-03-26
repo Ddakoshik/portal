@@ -10,13 +10,17 @@ import { AppRoutingModule } from './/app-routing.module';
 import { AuthRoutingModule } from './auth/auth-routing.module';
 import { environment } from './../environments/environment';
 
-//fierbase
+// fierbase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+// server
+import { HttpClientModule } from '@angular/common/http';
 
+// services
 import { AuthService } from './auth/auth.service';
+import { DashboardService } from './shared/services/dashboard.services';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './dashboard/header/header.component';
@@ -26,6 +30,7 @@ import { VipCatalogComponent } from './dashboard/cart-catalog/vip-catalog/vip-ca
 import { CatalogComponent } from './dashboard/cart-catalog/catalog/catalog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CartCatalogComponent } from './dashboard/cart-catalog/cart-catalog.component';
+
 
 
 
@@ -50,9 +55,12 @@ import { CartCatalogComponent } from './dashboard/cart-catalog/cart-catalog.comp
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    DashboardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

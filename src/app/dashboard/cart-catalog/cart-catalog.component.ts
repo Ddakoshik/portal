@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../../shared/services/dashboard.services';
+import { Card } from '../../shared/models/Card';
 
 @Component({
   selector: 'app-cart-catalog',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartCatalogComponent implements OnInit {
 
-  constructor() { }
+  cards: Card[] = [];
+  constructor(private dashboardservice: DashboardService) {}
 
   ngOnInit() {
+    this.getCards();
+  }
+
+  getCards(): void {
+    this.dashboardservice.getHeroes()
+      .subscribe(cards => this.cards = cards);
+      console.log(this.cards);
   }
 
 }
