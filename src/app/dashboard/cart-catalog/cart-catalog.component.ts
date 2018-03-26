@@ -10,16 +10,31 @@ import { Card } from '../../shared/models/Card';
 export class CartCatalogComponent implements OnInit {
 
   cards: Card[] = [];
+  cardsVip: Card[] = [];
   constructor(private dashboardservice: DashboardService) {}
 
   ngOnInit() {
     this.getCards();
+    this.getCardsVip();
+
   }
 
   getCards(): void {
-    this.dashboardservice.getHeroes()
-      .subscribe(cards => this.cards = cards);
-      console.log(this.cards);
+    this.dashboardservice.getCards()
+      .subscribe((data: any[]) => {
+        this.cards = data;
+        // console.log(this.cards);
+       }
+    );
   }
 
+  getCardsVip() {
+    this.dashboardservice.getCardsVip()
+      .subscribe((data: any[]) => {
+        this.cardsVip = data;
+        // console.log(this.cardsVip);
+       }
+    );
+
+  }
 }

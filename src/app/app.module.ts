@@ -56,6 +56,7 @@ import { CartCatalogComponent } from './dashboard/cart-catalog/cart-catalog.comp
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    HttpClientModule
   ],
   providers: [
     AuthService,

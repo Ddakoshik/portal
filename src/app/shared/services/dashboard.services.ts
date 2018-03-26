@@ -15,7 +15,8 @@ const httpOptions = {
 @Injectable()
 export class DashboardService {
 
-  private heroesUrl = 'localhost:3000/cards';  // URL to web api
+  private CardsUrl = 'http://localhost:3000/cards';  // URL to web api
+  private CardsVIPUrl = 'http://localhost:3000/cards-vip';  // URL to web api
 
   constructor(
     private http: HttpClient,
@@ -23,10 +24,22 @@ export class DashboardService {
 
 
   /** GET heroes from the server */
-  getHeroes (): Observable<Card[]> {
-    return this.http.get<Card[]>(this.heroesUrl);
-
+  getCards (): Observable<Card[]> {
+    return this.http.get<Card[]>(this.CardsUrl);
   }
+
+  getCardsVip (): Observable<Card[]> {
+    return this.http.get<Card[]>(this.CardsVIPUrl);
+  }
+
+  // getTest() {
+  //   this.http.get(this.heroesUrl)
+  //   .subscribe(
+  //     (data: any[]) => {
+  //       console.log(data);
+  //     }
+  //   );
+  // }
 
 
 }
