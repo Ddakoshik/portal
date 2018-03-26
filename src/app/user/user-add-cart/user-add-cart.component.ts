@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from '../../shared/services/dashboard.services';
+import { Card } from '../../shared/models/Card';
 
 @Component({
   selector: 'app-user-add-cart',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserAddCartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dashboardservice: DashboardService) { }
 
   ngOnInit() {
+  }
+
+  addCard() {
+
   }
 
 }
