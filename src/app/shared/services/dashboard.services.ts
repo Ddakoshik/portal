@@ -31,6 +31,12 @@ export class DashboardService {
   getCardsVip (): Observable<Card[]> {
     return this.http.get<Card[]>(this.CardsVIPUrl);
   }
+  // add card
+  postCard (addCard): Observable<Card[]> {
+    return this.http.post<Card[]>(this.CardsVIPUrl, {
+      addCard
+    });
+  }
 
   // getTest() {
   //   this.http.get(this.heroesUrl)

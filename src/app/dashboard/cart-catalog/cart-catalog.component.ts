@@ -35,6 +35,5 @@ export class CartCatalogComponent implements OnInit {
         // console.log(this.cardsVip);
        }
     );
-
   }
 }

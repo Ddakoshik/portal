@@ -9,13 +9,16 @@ import { Card } from '../../shared/models/Card';
 })
 export class UserAddCartComponent implements OnInit {
 
+  addCard: any;
+
   constructor(private dashboardservice: DashboardService) { }
 
   ngOnInit() {
   }
 
-  addCard() {
 
+  getCardInfo() {
+    this.dashboardservice.postCard(this.addCard);
   }
 
 }
