@@ -60,7 +60,15 @@
         </div>
         <button mat-raised-button color="primary" type="submit" (click)="addCard()">Опубликовать</button>
 
+
+        
+
+      
     </form>
 </div>  
-  
+<button mat-raised-button color="primary"  (click)="getCards()">Get cards</button>
+<button mat-raised-button color="primary"  (click)="addCardfunc()">Create card</button>
  
+<div *ngFor="let cardinfo of cardsinfo ">
+    {{ cardinfo | json }}
+</div>

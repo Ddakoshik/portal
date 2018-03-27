@@ -20,9 +20,7 @@
       "vipstatus": true,
       "hrefimg": "/assets/img/5_cme-mkey-.jpg"
     }
-  
   ],
-
   "cards": [
     {
       "id": 1,
@@ -113,6 +111,46 @@
       "vipstatus": true,
       "hrefimg": "/assets/img/5_cme-mkey-.jpg",
       "id": 9
+    },
+    {
+      "title": "Новая тест гитара",
+      "groupid": 1,
+      "group": "Баз",
+      "price": "1112",
+      "about": "почти новая гитара я ей почти не пользовался только 2 раза падала, а так нормальній инструмент",
+      "vipstatus": false,
+      "hrefimg": "/assets/img/5_cme-mkey-.jpg",
+      "id": 10
+    },
+    {
+      "title": "Новая тест гитара",
+      "groupid": 1,
+      "group": "Баз",
+      "price": "1112",
+      "about": "почти новая гитара я ей почти не пользовался только 2 раза падала, а так нормальній инструмент",
+      "vipstatus": false,
+      "hrefimg": "/assets/img/5_cme-mkey-.jpg",
+      "id": 11
+    },
+    {
+      "id": 12,
+      "title": "Новая тест гитара",
+      "groupid": 1,
+      "group": "Баз",
+      "price": "1112",
+      "about": "почти новая гитара я ей почти не пользовался только 2 раза падала, а так нормальній инструмент",
+      "vipstatus": false,
+      "hrefimg": "/assets/img/5_cme-mkey-.jpg"
+    },
+    {
+      "id": 13,
+      "title": "Новая тест гитара",
+      "groupid": 1,
+      "group": "Баз",
+      "price": "1112",
+      "about": "почти новая гитара я ей почти не пользовался только 2 раза падала, а так нормальній инструмент",
+      "vipstatus": false,
+      "hrefimg": "/assets/img/5_cme-mkey-.jpg"
     }
   ]
 }

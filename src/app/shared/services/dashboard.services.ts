@@ -33,9 +33,7 @@ export class DashboardService {
   }
   // add card
   postCard (addCard): Observable<Card[]> {
-    return this.http.post<Card[]>(this.CardsVIPUrl, {
-      addCard
-    });
+    return this.http.post<Card[]>(this.CardsUrl, addCard);
   }
 
   // getTest() {
