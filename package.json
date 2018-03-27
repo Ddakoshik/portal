@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "server": "json-server --watch ./server/api/db.json",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -26,6 +27,7 @@
     "angularfire2": "^5.0.0-rc.6",
     "core-js": "^2.4.1",
     "firebase": "^4.11.0",
+    "json-server": "^0.12.1",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
