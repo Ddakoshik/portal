@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserPageRoutingModule } from './user-page-routing.module';
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { MaterialModule } from '../shared/material.module';
 
@@ -15,7 +17,11 @@ import { UserStatisticsComponent } from './user-statistics/user-statistics.compo
   imports: [
     CommonModule,
     UserPageRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+    TextMaskModule
+
   ],
   declarations: [
     UserPageComponent,

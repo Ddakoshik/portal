@@ -74,7 +74,6 @@ export class LoginComponent implements OnInit {
       }
 
       /** TODO: Обработка данных формы */
-      console.log(this.loginForm.value);
       this.login(email, password);
   }
 

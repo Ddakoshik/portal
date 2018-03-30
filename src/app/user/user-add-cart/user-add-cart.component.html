@@ -1,41 +1,41 @@
 <div class="add-form_box">
-    <form class="example-form">
+    <form class="example-form" [formGroup]="addNewCardForm" (submit)="onSubmitAddNewCardForm()">
         <div class="form-row">
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Введите область" value="">
+                <input matInput placeholder="Введите область" value="" formControlName="region">
             </mat-form-field>
             
 
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Введите город" value="">
+                <input matInput placeholder="Введите город" value="" formControlName="city">
             </mat-form-field>
         </div>
 
         <div class="form-row">
             <mat-form-field>
-                <mat-select placeholder="Выберите категорию">
-                    <mat-option *ngFor="let categori of categories" [value]="categori.value">
-                    {{ categori.viewValue }}
+                <mat-select placeholder="Выберите категорию" (change)="onSelect()" formControlName="category" ngDefaultControl > 
+                    <mat-option *ngFor="let category of categories" [value]="category.catId">
+                        {{ category.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <mat-select placeholder="Выберите подкатегорию">
-                    <mat-option *ngFor="let categori of categories" [value]="categori.value">
-                    {{ categori.viewValue }}
+                <mat-select placeholder="Выберите подкатегорию" formControlName="subСategory"   ngDefaultControl>
+                   <mat-option *ngFor="let tempsubCat of tempsubCats" [value]="tempsubCat.id">
+                        {{tempsubCat.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
         <div class="characteristics"></div>
         <div class="form-row">       
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="Впишите заголовок" value="">
+            <mat-form-field class="example-full-width">  
+                <input matInput placeholder="Впишите заголовок" value="" formControlName="caption">
             </mat-form-field>
         </div>
         <div class="form-row">       
             <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Описание товара"></textarea>
+                <textarea matInput placeholder="Описание товара" formControlName="description"></textarea>
             </mat-form-field>
         </div>
         <div class="photo">
@@ -43,22 +43,22 @@
         </div>
         <div class="form-row">       
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Цена" value="">
+                <input matInput placeholder="Цена" value="" formControlName="price"> 
             </mat-form-field>
         </div>
         <div class="form-row">       
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Телефон" value="">
+                <input matInput placeholder="Телефон" [textMask]="{mask: mask, guide: false, modelClean: true}" value="" formControlName="phone"> 
             </mat-form-field>
         </div>
-        <div class="form-row">       
+        <!-- <div class="form-row">       
             <mat-form-field class="example-full-width">
                 <span matPrefix>+7 &nbsp;</span>
                 <input type="tel" matInput placeholder="Telephone">
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
-        </div>
-        <button mat-raised-button color="primary" type="submit" (click)="addCard()">Опубликовать</button>
+        </div> -->
+        <button mat-raised-button color="primary" type="submit">Опубликовать</button>
 
 
         

@@ -3,7 +3,7 @@
     <div class="header_box_right" >
       <div *ngIf="afAuth.authState !=null" class="batton-row login-row">
           <a routerLink="/auth/login" class="header_login">Войти</a>
-          <a routerLink="/auth/registration" class="header_reg">Регистрацыя</a>
+          <a routerLink="/auth/registration" class="header_reg">Регистрация</a>
       </div>
       <div *ngIf="afAuth.authState | async as user; else showLogin" class="batton-row"> 
           <p>{{ user.email }}</p>
