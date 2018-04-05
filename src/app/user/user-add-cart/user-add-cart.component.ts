@@ -65,8 +65,7 @@ export class UserAddCartComponent implements OnInit {
       category: ['', [Validators.required]],
       subСategory: ['', [Validators.required]],
       caption: ['', [Validators.required]],
-      description: ['',
-      [Validators.required]],
+      description: ['', [Validators.required]],
       price: ['', [Validators.required]],
       phone: ['', [Validators.required]],
     });
@@ -77,13 +76,27 @@ export class UserAddCartComponent implements OnInit {
     const controls = this.addNewCardForm.controls;
     const region = this.addNewCardForm.value.region;
     const city = this.addNewCardForm.value.city;
-    const category = this.addNewCardForm.value.category;
-    const subСategory = this.addNewCardForm.value.subСategory;
+    const categoryId = this.addNewCardForm.value.category;
+    const subСategoryId = this.addNewCardForm.value.subСategory;
     const caption = this.addNewCardForm.value.caption;
     const description = this.addNewCardForm.value.description;
     const price = this.addNewCardForm.value.price;
     const phone = this.addNewCardForm.value.phone;
 
+    const newvariable = {
+      id: null,
+      region,
+      city,
+      categoryId,
+      subСategoryId,
+      caption,
+      description,
+      price,
+      phone,
+      hrefimg: '/assets/img/5_cme-mkey-.jpg',
+      vipstatus: false
+      };
+      console.log(newvariable);
 
     /** Проверяем форму на валидность */
     if (this.addNewCardForm.invalid) {
@@ -98,38 +111,18 @@ export class UserAddCartComponent implements OnInit {
 
       /** TODO: Обработка данных формы */
       console.log(this.addNewCardForm.value);
+
+      this.addCardfunc(newvariable);
   }
 
+
   onSelect() {
-    // const controls = this.addNewCardForm.controls;
     const category = this.addNewCardForm.value.category;
     this.tempsubCats = this.categories[category - 1]['subCat'];
   }
 
-
-
-
-  getCardInfo() {
-  const newvariable = {
-    id: null,
-    title: 'Новая тест гитара',
-    groupid: 1,
-    group: 'Баз',
-    price: '1112',
-    about: 'почти новая гитара я ей почти не пользовался только 2 раза падала, а так нормальній инструмент',
-    vipstatus: false,
-    hrefimg: '/assets/img/5_cme-mkey-.jpg'
-  };
-  return newvariable;
-
-  }
-
-
-
-
-  addCardfunc() {
-    const peremennaya = this.getCardInfo();
-    this.dashboardservice.postCard(peremennaya).subscribe(
+  addCardfunc(newvariable) {
+    this.dashboardservice.postCard(newvariable).subscribe(
       res => console.log(res)
     );
   }

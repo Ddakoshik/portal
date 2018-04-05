@@ -1,10 +1,13 @@
 export class Card {
     id: number;
-    title: string;
-    groupid: number;
-    group: string;
+    region: string;
+    city: string;
+    categoryId: number;
+    subСategoryId: number;
+    caption: string;
+    description: string;
     price: string;
-    about: string;
-    vipstatus: boolean;
+    phone: number;
     hrefimg: string;
+    vipstatus: boolean;
   }

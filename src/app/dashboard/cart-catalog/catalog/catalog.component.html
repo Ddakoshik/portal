@@ -22,7 +22,7 @@
       <img mat-card-image [src]="card.hrefimg" alt="Описание гитары"> 
       <mat-card-content>
         <div class="simpl-card__box-row">
-          <mat-card-title>{{card.group}} {{card.title}}</mat-card-title>
+          <mat-card-title>id:{{card.id}} {{card.caption}}</mat-card-title>
           <mat-card-title>{{card.price}}р</mat-card-title>
         </div>
       </mat-card-content>
@@ -33,7 +33,7 @@
       <img mat-card-image [src]="card.hrefimg" alt="Описание гитары"> 
       <mat-card-content>
         <div class="simpl-card__box-row-row">
-          <mat-card-title>{{card.group}} {{card.title}}</mat-card-title>
+          <mat-card-title>id:{{card.id}} {{card.caption}}</mat-card-title>
           <mat-card-title>{{card.price}}р</mat-card-title>
         </div>
       </mat-card-content>
@@ -43,7 +43,7 @@
     <mat-card *ngFor="let card of cards"  class="simpl-card_row">
       <mat-card-content>
         <div class="simpl-card__row-row">
-          <mat-card-title>{{card.group}} {{card.title}}</mat-card-title>
+          <mat-card-title>id:{{card.id}} {{card.caption}}</mat-card-title>
           <mat-card-title>{{card.price}}р</mat-card-title>
         </div>
       </mat-card-content>
