@@ -11,6 +11,7 @@ import { UserPageComponent } from './user-page.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { UserAddCartComponent } from './user-add-cart/user-add-cart.component';
 import { UserStatisticsComponent } from './user-statistics/user-statistics.component';
+import { UploadImgComponent } from './user-add-cart/upload-img/upload-img.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { UserStatisticsComponent } from './user-statistics/user-statistics.compo
     UserPageComponent,
     UserSettingsComponent,
     UserAddCartComponent,
-    UserStatisticsComponent],
+    UserStatisticsComponent,
+    UploadImgComponent],
   exports: [
     UserPageComponent,
     UserSettingsComponent,

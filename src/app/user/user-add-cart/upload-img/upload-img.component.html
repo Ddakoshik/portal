@@ -1,0 +1,10 @@
+<p>Загрузить фото инструмента</p>
+<div>
+  <input type="file" (change)="uploadFile($event)" accept=".png,.jpg">
+  <div>{{ uploadPercent | async }}</div>
+  <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
+  <div class="box-img-row" >
+    <img [src]="url" [alt]="url" *ngFor="let url of storURL">
+    <div [ngStyle]="{'background-image': url("url")}" *ngFor="let url of storURL"></div>
+  </div>
+</div>
