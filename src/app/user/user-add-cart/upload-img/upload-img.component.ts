@@ -68,8 +68,11 @@ export class UploadImgComponent implements OnInit {
   }
 
 
-  deletingImg() {
-    console.log('deletingImg');
+  deletingImg(element, i) {
+    // console.log('deletingImg');
+    console.log(i);
+    delete this.preloadurls[i];
+    console.log(this.preloadurls);
   }
 
 

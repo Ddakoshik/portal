@@ -6,8 +6,8 @@
   <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
   <div class="box-img-row" >
     <!-- <img [src]="url" [alt]="url" *ngFor="let url of storURL"> -->
-    <div [ngStyle]="{'background-image': 'url(' + urll + ')'}" *ngFor="let urll of preloadurls" >
-      <div  class="img-ul-x-mark" (click)="deletingImg()">
+    <div [ngStyle]="{'background-image': 'url(' + urll + ')'}" *ngFor="let urll of preloadurls; let i=index" >
+      <div  class="img-ul-x-mark" (click)="deletingImg(urll,i)">
         <span  class="img-ul-close"></span>
       </div>
     </div> 
