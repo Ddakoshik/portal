@@ -17,6 +17,7 @@ export class UploadImgComponent implements OnInit {
   // downloadURL: Observable<string>;
   storURL = [];
   preloadurls = [];
+  testArr = [];
 
   profileUrl: Observable<string | null>;
 
@@ -36,14 +37,20 @@ export class UploadImgComponent implements OnInit {
     console.log(event);
     for (let i = 0; i <=  event.target.files['length'] - 1; i++) {
       if (event.target.files && event.target.files[i]) {
+
+        // this.testArr.push(event.target.files[i]);
+        // console.log(this.testArr);
+
         const reader = new FileReader();
 
-        reader.onload = (event: any) => {
-          const preloadurl = event.target.result;
-          this.preloadurls.push(preloadurl);
+        reader.onload = (eventtemp: any) => {
+          const preloadurl = eventtemp.target.result;
+          const preloadFile = event.target.files[i];
+          this.preloadurls.push({index: i, url: preloadurl , file: preloadFile});
         };
         reader.readAsDataURL(event.target.files[i]);
       }
+      console.log(this.preloadurls);
     }
 
   }
@@ -54,7 +61,7 @@ export class UploadImgComponent implements OnInit {
       const file = event.target.files[i];
       const date = new Date();
       const filePath = `img/${date.getTime()}${date.getMilliseconds()}`;
-      const customMetadata = { filename: filePath, file: 'is ok' };
+      const customMetadata = { filename: filePath, test: 'is ok' };
       const task = this.afStorage.upload(filePath, file,  { customMetadata });
 
     // observe percentage changes
@@ -69,9 +76,8 @@ export class UploadImgComponent implements OnInit {
 
 
   deletingImg(element, i) {
-    // console.log('deletingImg');
+    this.preloadurls.splice(this.preloadurls.indexOf(i), 1);
     console.log(i);
-    delete this.preloadurls[i];
     console.log(this.preloadurls);
   }
 
