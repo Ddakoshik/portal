@@ -2,6 +2,7 @@
 <div>
   <input #fileInput type="file" (change)="preloadsImg($event)" accept=".png,.jpg" multiple style="display:none;">
   <button mat-raised-button color="primary" (click)="fileInput.click()" class="newImage-btn" >Загрузить</button>
+  <button mat-raised-button color="primary" (click)="uploadFile()" class="newImage-btn" >Отправить</button>
   <!-- <div>{{ uploadPercent | async }}</div> -->
   <a [href]="downloadURL | async">{{ downloadURL | async }}</a>
   <div class="box-img-row" >

@@ -54,19 +54,18 @@ export class UploadImgComponent implements OnInit {
     }
 
   }
-  uploadFile(event) {
-  //  console.log(event);
+  uploadFile() {
 
-    for (let i = 0; i <=  event.target.files['length'] - 1; i++) {
-      const file = event.target.files[i];
+    for (let i = 0; i <=  this.preloadurls['length'] - 1; i++) {
+      const file = this.preloadurls[i].file;
+      console.log(file);
       const date = new Date();
       const filePath = `img/${date.getTime()}${date.getMilliseconds()}`;
       const customMetadata = { filename: filePath, test: 'is ok' };
       const task = this.afStorage.upload(filePath, file,  { customMetadata });
 
     // observe percentage changes
-    this.uploadPercent = task.percentageChanges();
-    // get notified when the download URL is available
+    // this.uploadPercent = task.percentageChanges();
 
     task.downloadURL().subscribe(
       x => this.storURL.push(x)
@@ -76,8 +75,7 @@ export class UploadImgComponent implements OnInit {
 
 
   deletingImg(element, i) {
-    this.preloadurls.splice(this.preloadurls.indexOf(i), 1);
-    console.log(i);
+    this.preloadurls.splice(i, 1);
     console.log(this.preloadurls);
   }
 
