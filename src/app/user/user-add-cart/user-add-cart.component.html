@@ -1,5 +1,5 @@
 <div class="add-form_box">
-    <form class="example-form" [formGroup]="addNewCardForm" (submit)="onSubmitAddNewCardForm()">
+    <form class="example-form" [formGroup]="addNewCardForm" >
         <div class="form-row">
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="Введите область" value="" formControlName="region">
@@ -58,7 +58,7 @@
                 <mat-icon matSuffix>mode_edit</mat-icon>
             </mat-form-field>
         </div> -->
-        <button mat-raised-button color="primary" type="submit">Опубликовать</button>
+        <button mat-raised-button color="primary" type="submit" (click)="onSubmitAddNewCardForm()" >Опубликовать</button>
 
 
         

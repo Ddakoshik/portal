@@ -34,7 +34,6 @@ export class UploadImgComponent implements OnInit {
 
 
   preloadsImg(event) {
-    console.log(event);
     for (let i = 0; i <=  event.target.files['length'] - 1; i++) {
       if (event.target.files && event.target.files[i]) {
 
@@ -50,9 +49,7 @@ export class UploadImgComponent implements OnInit {
         };
         reader.readAsDataURL(event.target.files[i]);
       }
-      console.log(this.preloadurls);
     }
-
   }
   uploadFile() {
 
@@ -64,9 +61,6 @@ export class UploadImgComponent implements OnInit {
       const customMetadata = { filename: filePath, test: 'is ok' };
       const task = this.afStorage.upload(filePath, file,  { customMetadata });
 
-    // observe percentage changes
-    // this.uploadPercent = task.percentageChanges();
-
     task.downloadURL().subscribe(
       x => this.storURL.push(x)
     );
@@ -76,7 +70,6 @@ export class UploadImgComponent implements OnInit {
 
   deletingImg(element, i) {
     this.preloadurls.splice(i, 1);
-    console.log(this.preloadurls);
   }
 
 

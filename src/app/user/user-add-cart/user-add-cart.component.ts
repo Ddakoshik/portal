@@ -127,7 +127,6 @@ export class UserAddCartComponent implements OnInit {
     );
   }
 
-
   getCards() {
       this.dashboardservice.getCards()
       .subscribe((data: any[]) => {
