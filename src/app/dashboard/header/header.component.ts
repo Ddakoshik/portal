@@ -15,7 +15,7 @@ import * as firebase from 'firebase/app';
 })
 export class HeaderComponent implements OnInit {
 
-  usertest;
+  usertest: any;
 
   constructor(
     private usersService: UsersService,
@@ -24,8 +24,16 @@ export class HeaderComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.usersService.cast.subscribe(user => this.usertest = user);
-    console.log('go', this.usertest);
+    this.usersService.cast.subscribe(user => {
+      const data = user;
+      // const id = user.id;
+      return {...data};
+    });
+    this.usersService.cast.forEach(item => {
+      this.usertest = item.email;
+      console.log(this.usertest);
+    });
+
   }
 
   mainlogout() {
