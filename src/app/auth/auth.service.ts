@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
+  _uEmail: string;
 
   constructor(public afAuth: AngularFireAuth) {
     this.user = afAuth.authState;
@@ -42,6 +43,18 @@ export class AuthService {
 
   logout() {
     this.afAuth.auth.signOut();
+    // this._uEmail = undefined;
   }
 
+  get uEmail() {
+    if (this._uEmail !== undefined) {
+      return this._uEmail;
+    } else {
+      return this._uEmail = 'anonim';
+     }
+
+  }
+  set uEmail(data) {
+    this._uEmail = data;
+  }
 }

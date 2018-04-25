@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 // services
 import { AuthService } from './auth/auth.service';
 import { DashboardService } from './shared/services/dashboard.services';
+import { UsersService } from './shared/services/user.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './dashboard/header/header.component';
@@ -32,6 +33,7 @@ import { VipCatalogComponent } from './dashboard/cart-catalog/vip-catalog/vip-ca
 import { CatalogComponent } from './dashboard/cart-catalog/catalog/catalog.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CartCatalogComponent } from './dashboard/cart-catalog/cart-catalog.component';
+
 
 
 
@@ -64,7 +66,8 @@ import { CartCatalogComponent } from './dashboard/cart-catalog/cart-catalog.comp
   ],
   providers: [
     AuthService,
-    DashboardService
+    DashboardService,
+    UsersService
   ],
   bootstrap: [AppComponent]
 })

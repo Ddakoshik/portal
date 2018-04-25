@@ -1,13 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../auth/auth.service';
-
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import { AngularFireAuth } from 'angularfire2/auth';
-
-
-// import { Router, ActivatedRoute } from '@angular/router';
-// import { AngularFireAuth } from 'angularfire2/auth';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-header-login',
@@ -16,29 +7,38 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class HeaderLoginComponent implements OnInit {
 
+  @Input('myuser') myuser;
+  @Output() logout =  new EventEmitter();
+
+  myroute = '/auth';
 
   constructor(
-    private authService: AuthService,
-    public afAuth: AngularFireAuth
+    // private authService: AuthService,
+    // public afAuth: AngularFireAuth
   ) { }
 
   ngOnInit() {
-    this.isAuthorizateRoute();
-  }
-
-  isAuthorizateRoute() {
-    this.afAuth.authState.subscribe(
-      i => {
-        if (i !== null) {
-          console.log(i);
-
-         }
-      }
-    );
+    console.log('my', this.myuser);
+    if (this.myuser !== null) {
+      this.myroute = '/add';
+    }
+   // console.log('init', this.authService.uEmail);
+    // this.isAuthorizateRoute();
   }
 
 
-  logout() {
-    this.authService.logout();
+test() {
+  if (this.myuser != null ) {
+    console.log(this.myuser.email);
+  } else {
+    console.log('НЕМА');
+  }
+
+}
+
+  fLogout() {
+    console.log('logout');
+    this.logout.emit('ex');
+  //  this.authService.logout();
   }
 }

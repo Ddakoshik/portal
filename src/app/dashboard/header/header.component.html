@@ -1,2 +1,2 @@
-<app-header-login></app-header-login> 
+<app-header-login [myuser]="afAuth.authState | async" (logout)="mainlogout($event)"></app-header-login> 
 <app-header-search></app-header-search>
