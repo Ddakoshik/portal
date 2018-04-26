@@ -131,6 +131,19 @@
       "phone": "(123) 12-31-231",
       "hrefimg": "/assets/img/5_cme-mkey-.jpg",
       "vipstatus": false
+    },
+    {
+      "id": 9,
+      "region": "asd",
+      "city": "asdad",
+      "categoryId": 1,
+      "subСategoryId": 3,
+      "caption": "dadsd",
+      "description": "asffff",
+      "price": "100",
+      "phone": "(096) 47-25-396",
+      "hrefimg": "/assets/img/5_cme-mkey-.jpg",
+      "vipstatus": false
     }
   ]
 }

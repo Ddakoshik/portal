@@ -11,11 +11,16 @@ import { Observable } from 'rxjs/Observable';
 export class UsersService {
   private user: Observable<firebase.User>;
 
-  cast: any;
+  uEmail: any;
 
   constructor(public afAuth: AngularFireAuth) {
     this.user = afAuth.authState;
-    this.cast = this.user;
+    this.user.subscribe(
+      x => {
+        if (x !== undefined && x !== null) {
+          this.uEmail = x.email;
+        }
+      });
   }
 
 

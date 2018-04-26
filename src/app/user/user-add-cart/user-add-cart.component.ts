@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../shared/services/dashboard.services';
 import { Card } from '../../shared/models/Card';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { UsersService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-user-add-cart',
@@ -50,7 +51,8 @@ export class UserAddCartComponent implements OnInit {
 
   constructor(
     private dashboardservice: DashboardService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private usersService: UsersService) { }
 
   ngOnInit() {
     this.initForm();
@@ -82,6 +84,7 @@ export class UserAddCartComponent implements OnInit {
     const description = this.addNewCardForm.value.description;
     const price = this.addNewCardForm.value.price;
     const phone = this.addNewCardForm.value.phone;
+    const autors = this.usersService.uEmail;
 
     const newvariable = {
       id: null,
@@ -94,7 +97,8 @@ export class UserAddCartComponent implements OnInit {
       price,
       phone,
       hrefimg: '/assets/img/5_cme-mkey-.jpg',
-      vipstatus: false
+      vipstatus: false,
+      autors
       };
       console.log(newvariable);
 
@@ -112,7 +116,10 @@ export class UserAddCartComponent implements OnInit {
       /** TODO: Обработка данных формы */
       console.log(this.addNewCardForm.value);
 
+      console.log('test', this.usersService.uEmail);
+
       this.addCardfunc(newvariable);
+
   }
 
 
