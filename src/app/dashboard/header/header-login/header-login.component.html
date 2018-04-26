@@ -1,26 +1,20 @@
 <div class="header_box">
     <mat-icon>home</mat-icon>
     <div class="header_box_right" >
-      <!-- <div *ngIf="afAuth.authState !=null" class="batton-row login-row">
-          <a routerLink="/auth/login" class="header_login">Войти</a>
-          <a routerLink="/auth/registration" class="header_reg">Регистрация</a>
-      </div>
-      <div *ngIf="afAuth.authState | async as user; else showLogin" class="batton-row"> 
-          <p>{{ user.email }}</p>
-          <button mat-raised-button (click)="logout()">Выйти</button>
-          <button mat-raised-button routerLink="/user-page" >Мой профиль</button>
-      </div> -->
-
-      <div *ngIf="myuser ==null" class="batton-row login-row">
-        <a routerLink="/auth/login" class="header_login">Войти</a>
-        <a routerLink="/auth/registration" class="header_reg">Регистрация</a>
-    </div>
-
-      <div *ngIf="myuser" class="batton-row"> 
+  
+    <div *ngIf="myuser as user; else showLogin" class="batton-row"> 
         <p>{{ myuser.email }}</p>
         <button mat-raised-button (click)="fLogout()">Выйти</button>
         <button mat-raised-button routerLink="/user-page" >Мой профиль</button>
-      </div> 
+    </div> 
+    <ng-template #showLogin>
+    <div  class="batton-row login-row">
+        <a routerLink="/auth/login" class="header_login">Войти</a>
+        <a routerLink="/auth/registration" class="header_reg">Регистрация</a>
+    </div>
+    </ng-template>
+
+     
        <button class="add-new" mat-raised-button color="primary" routerLink="myroute">Подать обявление</button>
        <button class="add-new" mat-raised-button color="primary" (click)="test()"  >Test {{email}}</button>
    </div>
