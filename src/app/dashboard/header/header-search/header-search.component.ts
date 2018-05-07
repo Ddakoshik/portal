@@ -24,7 +24,7 @@ export class HeaderSearchComponent implements OnInit {
     {value: 'tacos-2', viewValue: 'Ялта'}
   ];
 
-  
+
   constructor() { }
 
   ngOnInit() {

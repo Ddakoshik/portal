@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-login',
@@ -10,31 +11,21 @@ export class HeaderLoginComponent implements OnInit {
   @Input('myuser') myuser;
   @Output() logout =  new EventEmitter();
 
-  myroute = '/auth';
 
-  constructor(
-    // private authService: AuthService,
-    // public afAuth: AngularFireAuth
-  ) { }
+  constructor(    private router: Router  ) { }
 
   ngOnInit() {
-    console.log('my', this.myuser);
+  }
+
+
+  takeRoutAddCard() {
     if (this.myuser !== null) {
-      this.myroute = '/add';
+      this.router.navigate(['/user-page/add-cart']);
+    } else {
+      this.router.navigate(['/auth/login']);
     }
-   // console.log('init', this.authService.uEmail);
-    // this.isAuthorizateRoute();
   }
 
-
-test() {
-  if (this.myuser != null ) {
-    console.log(this.myuser.email);
-  } else {
-    console.log('НЕМА');
-  }
-
-}
 
   fLogout() {
     console.log('logout');
@@ -42,3 +33,6 @@ test() {
   //  this.authService.logout();
   }
 }
+
+
+
