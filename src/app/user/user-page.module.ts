@@ -13,6 +13,8 @@ import { UserAddCartComponent } from './user-add-cart/user-add-cart.component';
 import { UserStatisticsComponent } from './user-statistics/user-statistics.component';
 import { UploadImgComponent } from './user-add-cart/upload-img/upload-img.component';
 
+import { UserService } from './user.service';
+
 
 @NgModule({
   imports: [
@@ -36,5 +38,6 @@ import { UploadImgComponent } from './user-add-cart/upload-img/upload-img.compon
     UserAddCartComponent,
     UserStatisticsComponent
   ],
+  providers: [UserService],
 })
 export class UserPageModule { }
