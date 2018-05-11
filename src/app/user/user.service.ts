@@ -1,8 +1,30 @@
 import { Injectable } from '@angular/core';
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs/Observable';
+
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
 
-  constructor() { }
+
+  private user: Observable<firebase.User>;
+
+  constructor( private router: Router ) {
+    // this.user.subscribe(
+    //   (user) => {
+    //     if (user) {
+    //       this.router.navigate(['/dashboard']);
+    //     } else {
+    //       this.router.navigate(['/auth']);
+    //     }
+    //   }
+    // );
+  }
+
+
+
 
 }
+
+

@@ -1,8 +1,36 @@
-<p>
-  user-settings works!
-</p>
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Favorite food" >
-  </mat-form-field>
+<p>  user-settings</p>
+
+<form class="example-form" [formGroup]="userSettingForm" (ngSubmit)="onSubmitAddNewCardForm()">
+  <div class="seting-box">
+    <div class="form-row">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Введите ваше имя" value="" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Укажите ваш пол" (change)="onSelect()" formControlName="sex" ngDefaultControl > 
+            <mat-option *ngFor="let sex of sexofaperson" [value]="sex.sexId">
+                {{ sex.name}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Введите город" value="" formControlName="city">
+      </mat-form-field>
+            
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Телефон" [textMask]="{mask: mask, guide: false, modelClean: true}" value="" formControlName="phone"> 
+      </mat-form-field>
+    </div>
+    <div class="form-row control-button">
+      <button mat-mini-fab type="button" color="primary">
+        <mat-icon aria-label="Example icon-button with a heart icon">mode_edit</mat-icon>
+      </button>
+      <button mat-mini-fab type="submit" color="primary">
+        <mat-icon aria-label="Example icon-button with a heart icon">done</mat-icon>
+      </button>
+    </div>
+  </div>
 </form>
