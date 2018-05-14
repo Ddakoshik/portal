@@ -1,5 +1,6 @@
 <p>  user-settings</p>
 
+<mat-card>
 <form class="example-form" [formGroup]="userSettingForm" (ngSubmit)="onSubmitAddNewCardForm()">
   <div class="seting-box">
     <div class="form-row">
@@ -34,3 +35,6 @@
     </div>
   </div>
 </form>
+</mat-card>
+
+<h1> hi {{ (item | async)?.name }}</h1>

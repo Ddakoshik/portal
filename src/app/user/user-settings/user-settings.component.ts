@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
+import { AngularFireDatabase, AngularFireAction, AngularFireObject } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
+
 @Component({
   selector: 'app-user-settings',
   templateUrl: './user-settings.component.html',
@@ -15,10 +18,14 @@ export class UserSettingsComponent implements OnInit {
     {sexId: 1, name: 'Мужчина'},
     {sexId: 2, name: 'Женщина'}
   ];
+  item: Observable<any>;
 
   constructor(
-    private fb: FormBuilder
-  ) { }
+    private fb: FormBuilder,
+    private db: AngularFireDatabase
+  ) {
+    this.item = db.list('items').valueChanges();
+   }
 
   ngOnInit() {
     this.initForm();
@@ -44,8 +51,10 @@ onSubmitAddNewCardForm() {
 
   const newvariable = {
     id: null,
+    name,
     city,
     phone,
+    sex,
     vipstatus: false,
     };
     console.log(newvariable);
@@ -62,6 +71,9 @@ onSubmitAddNewCardForm() {
     }
 
     console.log(this.userSettingForm.value);
+    const date = new Date();
+    const itemRef = this.db.object(`cards/${date.getTime()}${date.getMilliseconds()}`);
+    itemRef.set(newvariable);
 
 }
 
