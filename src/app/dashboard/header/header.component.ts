@@ -3,7 +3,7 @@ import { AuthService } from '../../auth/auth.service';
 
 import { UsersService } from '../../shared/services/user.service';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';

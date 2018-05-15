@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 // import { UploadImgService } from './upload-img.service';
 
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-upload-img',
@@ -55,15 +55,17 @@ export class UploadImgComponent implements OnInit {
 
     for (let i = 0; i <=  this.preloadurls['length'] - 1; i++) {
       const file = this.preloadurls[i].file;
-      console.log(file);
+      // console.log(file);
       const date = new Date();
       const filePath = `img/${date.getTime()}${date.getMilliseconds()}`;
       const customMetadata = { filename: filePath, test: 'is ok' };
       const task = this.afStorage.upload(filePath, file,  { customMetadata });
-
-    task.downloadURL().subscribe(
-      x => this.storURL.push(x)
-    );
+      task.then(
+        x =>  {
+          this.storURL.push(x.downloadURL);
+          console.log(this.storURL);
+            }
+      );
     }
   }
 

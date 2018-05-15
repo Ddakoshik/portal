@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { AngularFireDatabase, AngularFireAction, AngularFireObject } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+
+import { UsersService } from '../../shared/services/user.service';
 
 @Component({
   selector: 'app-user-settings',
@@ -11,6 +13,8 @@ import { Observable } from 'rxjs/Observable';
 })
 export class UserSettingsComponent implements OnInit {
 
+
+  editeble = false;
   userSettingForm: FormGroup;
   tempsubCats: any;
   public mask = ['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, '-', /\d/,  /\d/, '-', /\d/, /\d/, /\d/];
@@ -18,18 +22,37 @@ export class UserSettingsComponent implements OnInit {
     {sexId: 1, name: 'Мужчина'},
     {sexId: 2, name: 'Женщина'}
   ];
-  item: Observable<any>;
+  userinfo: Observable<any>;
+  email = this.UserServ.uEmail;
 
   constructor(
     private fb: FormBuilder,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    private UserServ: UsersService
   ) {
-    this.item = db.list('items').valueChanges();
+    this.userinfo = db.list(`/users/`, ref => this.email ? ref.orderByChild('email').equalTo(this.email) : ref).valueChanges();
+    console.log('1', this.userinfo);
+    // this.userinfo = db.list(`/users/roobot_i_ua`).valueChanges();
+    // console.log('1', this.userinfo);
+
    }
 
   ngOnInit() {
     this.initForm();
+
   }
+
+
+  // constructor(db: AngularFireDatabase) {
+  //   this.size$ = new BehaviorSubject(null);
+  //   this.items$ = this.size$.pipe(
+  //     switchMap(size =>
+  //       db.list('/items', ref =>
+  //         size ? ref.orderByChild('size').equalTo(size) : ref
+  //       ).snapshotChanges()
+  //     )
+  //   );
+  // }
 
 
   initForm() {
@@ -47,6 +70,10 @@ onSubmitAddNewCardForm() {
   const sex = this.userSettingForm.value.sex;
   const city = this.userSettingForm.value.city;
   const phone = this.userSettingForm.value.phone;
+  const email = this.UserServ.uEmail;
+  const acauntName = this.UserServ.uEmail.replace(/@/g, '_').replace('.', '_');
+  const date = new Date();
+  const userRoles = 'user';
 
 
   const newvariable = {
@@ -56,6 +83,9 @@ onSubmitAddNewCardForm() {
     phone,
     sex,
     vipstatus: false,
+    email,
+    date,
+    userRoles
     };
     console.log(newvariable);
 
@@ -70,9 +100,8 @@ onSubmitAddNewCardForm() {
       return;
     }
 
-    console.log(this.userSettingForm.value);
-    const date = new Date();
-    const itemRef = this.db.object(`cards/${date.getTime()}${date.getMilliseconds()}`);
+
+    const itemRef = this.db.object(`users/${acauntName}/`);
     itemRef.set(newvariable);
 
 }

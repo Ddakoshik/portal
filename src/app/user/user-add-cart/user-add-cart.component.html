@@ -13,7 +13,7 @@
 
         <div class="form-row">
             <mat-form-field>
-                <mat-select placeholder="Выберите категорию" (change)="onSelect()" formControlName="category" ngDefaultControl > 
+                <mat-select placeholder="Выберите категорию" (selectionChange)="onSelect()" formControlName="category" ngDefaultControl > 
                     <mat-option *ngFor="let category of categories" [value]="category.catId">
                         {{ category.name}}
                     </mat-option>

@@ -9,7 +9,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Укажите ваш пол" (change)="onSelect()" formControlName="sex" ngDefaultControl > 
+        <mat-select placeholder="Укажите ваш пол" (selectionChange)="onSelect()" formControlName="sex" ngDefaultControl > 
             <mat-option *ngFor="let sex of sexofaperson" [value]="sex.sexId">
                 {{ sex.name}}
             </mat-option>
@@ -36,5 +36,7 @@
   </div>
 </form>
 </mat-card>
+<!-- 
+<h1 *ngFor="let user of userinfo | async "> hi {{ userinfo | async }}</h1> -->
 
-<h1> hi {{ (item | async)?.name }}</h1>
+<h1 > hi {{ userinfo | async | json }}</h1>

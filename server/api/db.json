@@ -144,6 +144,48 @@
       "phone": "(096) 47-25-396",
       "hrefimg": "/assets/img/5_cme-mkey-.jpg",
       "vipstatus": false
+    },
+    {
+      "id": 10,
+      "region": "123",
+      "city": "(123) 12-31-231",
+      "categoryId": 1,
+      "subСategoryId": 1,
+      "caption": "scsdss",
+      "description": "dsdsdsdsd",
+      "price": "100",
+      "phone": "(342) 24-32-433",
+      "hrefimg": "/assets/img/5_cme-mkey-.jpg",
+      "vipstatus": false,
+      "autors": "roobotik@gmail.com"
+    },
+    {
+      "id": 11,
+      "region": "123",
+      "city": "(123) 12-31-231",
+      "categoryId": 1,
+      "subСategoryId": 1,
+      "caption": "scsdss",
+      "description": "dsdsdsdsd",
+      "price": "100",
+      "phone": "(342) 24-32-433",
+      "hrefimg": "/assets/img/5_cme-mkey-.jpg",
+      "vipstatus": false,
+      "autors": "roobotik@gmail.com"
+    },
+    {
+      "id": 12,
+      "region": "123",
+      "city": "(123) 12-31-231",
+      "categoryId": 1,
+      "subСategoryId": 1,
+      "caption": "scsdss",
+      "description": "dsdsdsdsd",
+      "price": "100",
+      "phone": "(342) 24-32-433",
+      "hrefimg": "/assets/img/5_cme-mkey-.jpg",
+      "vipstatus": false,
+      "autors": "roobotik@gmail.com"
     }
   ]
 }
