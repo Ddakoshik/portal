@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { AngularFireDatabase, AngularFireAction, AngularFireObject } from 'angularfire2/database';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { UsersService } from '../../shared/services/user.service';
 
@@ -23,36 +24,52 @@ export class UserSettingsComponent implements OnInit {
     {sexId: 2, name: 'Женщина'}
   ];
   userinfo: Observable<any>;
-  email = this.UserServ.uEmail;
+  userData: any;
+  email: Observable<string|null>;
+  users;
 
   constructor(
     private fb: FormBuilder,
     private db: AngularFireDatabase,
     private UserServ: UsersService
   ) {
-    this.userinfo = db.list(`/users/`, ref => this.email ? ref.orderByChild('email').equalTo(this.email) : ref).valueChanges();
-    console.log('1', this.userinfo);
-    // this.userinfo = db.list(`/users/roobot_i_ua`).valueChanges();
-    // console.log('1', this.userinfo);
-
-   }
+      this.email = this.UserServ.uEmail;
+      console.log(this.email);
+  }
 
   ngOnInit() {
     this.initForm();
+    this.userinfo = this.email.pipe(
+      switchMap(em =>
+            this.db.list('users', ref =>
+              em ? ref.orderByChild('email').equalTo(em) : ref
+            ).snapshotChanges()
+          )
+    );
+    // const xy = this.userinfo.subscribe(items => {
+    //   this.userData = items;
+    //   console.log('userData', this.userData);
+    //   this.userinfo.map( res => console.log('respayload', res.payload));
+    // });
+    console.log('userInfo', this.userinfo);
+
+    const x = this.db.list(`users` , ref => ref.orderByKey().equalTo('roobotik_gmail_com'));
+    x.snapshotChanges().subscribe(item => {
+      // Вариантик 2
+      this.users = item;
+      console.log('123', this.users);
+
+    //   // Оригинал
+    //   item.forEach(element => {
+    //     const y = element.payload.toJSON();
+    //     y['$key'] = element.key;
+    //     this.users.push(y);
+    //     console.log(y);
+    //   });
+    });
 
   }
 
-
-  // constructor(db: AngularFireDatabase) {
-  //   this.size$ = new BehaviorSubject(null);
-  //   this.items$ = this.size$.pipe(
-  //     switchMap(size =>
-  //       db.list('/items', ref =>
-  //         size ? ref.orderByChild('size').equalTo(size) : ref
-  //       ).snapshotChanges()
-  //     )
-  //   );
-  // }
 
 
   initForm() {
@@ -71,7 +88,8 @@ onSubmitAddNewCardForm() {
   const city = this.userSettingForm.value.city;
   const phone = this.userSettingForm.value.phone;
   const email = this.UserServ.uEmail;
-  const acauntName = this.UserServ.uEmail.replace(/@/g, '_').replace('.', '_');
+  // const acauntName = this.UserServ.uEmail.replace(/@/g, '_').replace('.', '_');
+  const acauntName = 'roobot_i_ua';
   const date = new Date();
   const userRoles = 'user';
 
