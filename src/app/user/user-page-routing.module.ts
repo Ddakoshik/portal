@@ -7,6 +7,7 @@ import { UserPageComponent } from './user-page.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { UserAddCartComponent } from './user-add-cart/user-add-cart.component';
 import { UserStatisticsComponent } from './user-statistics/user-statistics.component';
+import { SettingsResolver } from './services/SettingsResolver.service';
 
 
 
@@ -15,7 +16,7 @@ const routes: Routes = [
     {
     path: '', component: UserPageComponent,
     children: [
-      { path: 'settings', component: UserSettingsComponent },
+      { path: 'settings', component: UserSettingsComponent, resolve: {simpleUser: SettingsResolver}},
       { path: 'add-cart', component: UserAddCartComponent },
       { path: 'statisics', component: UserStatisticsComponent },
 
@@ -28,6 +29,7 @@ const routes: Routes = [
       CommonModule,
       RouterModule.forChild(routes)
     ],
+    providers: [ SettingsResolver ],
     exports: [RouterModule]
 })
 

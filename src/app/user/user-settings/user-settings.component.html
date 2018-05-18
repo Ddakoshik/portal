@@ -22,7 +22,7 @@
       </mat-form-field>
             
       <mat-form-field class="example-full-width">
-          <input matInput placeholder="Телефон" [textMask]="{mask: mask, guide: false, modelClean: true}" value="" formControlName="phone"> 
+          <input matInput placeholder="Телефон" [textMask]="{mask: mask, guide: false, modelClean: true}" [value]="uniqueArr[0].phone" formControlName="phone"> 
       </mat-form-field>
     </div>
     <div class="form-row control-button">

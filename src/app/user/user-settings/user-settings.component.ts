@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 import { AngularFireDatabase, AngularFireAction, AngularFireObject } from 'angularfire2/database';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -14,8 +15,6 @@ import { UsersService } from '../../shared/services/user.service';
 })
 export class UserSettingsComponent implements OnInit {
 
-
-  editeble = false;
   userSettingForm: FormGroup;
   tempsubCats: any;
   public mask = ['(', /[0-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, '-', /\d/,  /\d/, '-', /\d/, /\d/, /\d/];
@@ -29,17 +28,18 @@ export class UserSettingsComponent implements OnInit {
   users;
   items: Observable<any[]>;
   uniqueArr = [];
+
   constructor(
     private fb: FormBuilder,
     private db: AngularFireDatabase,
-    private UserServ: UsersService
+    private UserServ: UsersService,
+    // private route: ActivatedRoute
   ) {
       this.items = db.list('users').valueChanges();
       this.email = this.UserServ.uEmail;
       this.email.subscribe(data => {
         this.items.subscribe(res => res.map( el => {
           const check = el.email === data;
-          console.log(check);
           if (check) {
             this.uniqueUser (el);
           }
@@ -50,6 +50,7 @@ export class UserSettingsComponent implements OnInit {
     return this.uniqueArr.push(el);
   }
   ngOnInit() {
+     //console.log('onInit settings', this.route.snapshot.data);
     this.initForm();
     // this.userinfo = this.email.pipe(
     //   switchMap(em =>
@@ -63,8 +64,9 @@ export class UserSettingsComponent implements OnInit {
     //   console.log('userData', this.userData);
     //   this.userinfo.map( res => console.log('respayload', res.payload));
     // });
-    console.log('userInfo', this.userinfo);
 
+///    //console.log('userInfo', this.userinfo);
+/*
     const x = this.db.list(`users` , ref => ref.orderByKey().equalTo('roobotik_gmail_com'));
     x.snapshotChanges().subscribe(item => {
       // Вариантик 2
@@ -79,7 +81,7 @@ export class UserSettingsComponent implements OnInit {
     //     console.log(y);
     //   });
     });
-
+*/
   }
 
 
