@@ -27,25 +27,37 @@ export class UserSettingsComponent implements OnInit {
   userData: any;
   email: Observable<string|null>;
   users;
-
+  items: Observable<any[]>;
+  uniqueArr = [];
   constructor(
     private fb: FormBuilder,
     private db: AngularFireDatabase,
     private UserServ: UsersService
   ) {
+      this.items = db.list('users').valueChanges();
       this.email = this.UserServ.uEmail;
-      console.log(this.email);
+      this.email.subscribe(data => {
+        this.items.subscribe(res => res.map( el => {
+          const check = el.email === data;
+          console.log(check);
+          if (check) {
+            this.uniqueUser (el);
+          }
+        }));
+      });
   }
-
+  uniqueUser (el) {
+    return this.uniqueArr.push(el);
+  }
   ngOnInit() {
     this.initForm();
-    this.userinfo = this.email.pipe(
-      switchMap(em =>
-            this.db.list('users', ref =>
-              em ? ref.orderByChild('email').equalTo(em) : ref
-            ).snapshotChanges()
-          )
-    );
+    // this.userinfo = this.email.pipe(
+    //   switchMap(em =>
+    //         this.db.list('users', ref =>
+    //           em ? ref.orderByChild('email').equalTo(em) : ref
+    //         ).snapshotChanges()
+    //       )
+    // );
     // const xy = this.userinfo.subscribe(items => {
     //   this.userData = items;
     //   console.log('userData', this.userData);

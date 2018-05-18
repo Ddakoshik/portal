@@ -16,9 +16,9 @@
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="form-row">
+    <div class="form-row" *ngIf="uniqueArr[0]"> 
       <mat-form-field class="example-full-width">
-        <input matInput placeholder="Введите город" value="" formControlName="city">
+        <input matInput placeholder="Введите город" [value]="uniqueArr[0].city" formControlName="city">
       </mat-form-field>
             
       <mat-form-field class="example-full-width">
